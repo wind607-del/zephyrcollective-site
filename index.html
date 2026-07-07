@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Foundations: Build Confidence With AI | Zephyr Collective</title>
+<meta name="description" content="A 4-week live beginner program where you meet Zephyr, your AI mentor and coach, and build confidence using AI for work, learning, planning, and everyday life.">
+<style>
+  :root{
+    --navy:#0B1220;
+    --cream:#FFFDF7;
+    --blue:#2563EB;
+    --blue-deep:#1D4ED8;
+    --blue-light:#EFF6FF;
+    --gold:#FBBF24;
+    --sage:#A7C7A0;
+    --slate:#475569;
+    --slate-light:#94A3B8;
+    --border:rgba(11,18,32,0.08);
+    --radius-lg:24px;
+    --radius-md:16px;
+    --radius-sm:10px;
+    --shadow-soft:0 20px 50px -20px rgba(11,18,32,0.18);
+    --shadow-tiny:0 2px 10px rgba(11,18,32,0.06);
+    --max:1120px;
+  }
+
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--navy);
+    background:var(--cream);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  h1,h2,h3,h4{margin:0;line-height:1.15;letter-spacing:-0.02em;}
+  p{margin:0;}
+  ul{margin:0;padding:0;}
+  li{list-style:none;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  section{padding:88px 0;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+    color:var(--blue-deep);background:var(--blue-light);
+    padding:7px 14px;border-radius:999px;
+  }
+  .eyebrow.gold{color:#92650B;background:rgba(251,191,36,0.18);}
+  .section-head{max-width:640px;margin:0 auto 48px;text-align:center;}
+  .section-head h2{font-size:clamp(28px,3.6vw,40px);margin-top:14px;}
+  .section-head p{margin-top:14px;color:var(--slate);font-size:17px;}
+  .section-head.left{margin-left:0;text-align:left;}
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    font-weight:700;font-size:16px;text-decoration:none;
+    padding:16px 30px;border-radius:999px;border:2px solid transparent;
+    cursor:pointer;transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{background:var(--blue);color:#fff;box-shadow:0 12px 28px -10px rgba(37,99,235,0.55);}
+  .btn-primary:hover{background:var(--blue-deep);transform:translateY(-2px);box-shadow:0 16px 32px -10px rgba(37,99,235,0.6);}
+  .btn-secondary{background:transparent;color:var(--navy);border-color:rgba(11,18,32,0.18);}
+  .btn-secondary:hover{border-color:var(--navy);transform:translateY(-2px);}
+  .btn-ghost{background:var(--blue-light);color:var(--blue-deep);}
+  .btn-ghost:hover{background:#dfeaff;transform:translateY(-2px);}
+  .btn-block{width:100%;}
+  .btn-sm{padding:12px 22px;font-size:14px;}
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position:sticky;top:0;z-index:100;
+    background:rgba(255,253,247,0.82);
+    backdrop-filter:saturate(180%) blur(14px);
+    -webkit-backdrop-filter:saturate(180%) blur(14px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:16px;padding-bottom:16px;}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;text-decoration:none;color:var(--navy);}
+  .brand-mark{
+    width:34px;height:34px;border-radius:10px;
+    background:linear-gradient(135deg,var(--blue),var(--sage) 60%, var(--gold));
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .brand-mark svg{width:18px;height:18px;}
+  .nav-links{display:flex;align-items:center;gap:32px;}
+  .nav-links a{font-size:15px;font-weight:600;text-decoration:none;color:var(--slate);transition:color .15s ease;}
+  .nav-links a:hover{color:var(--navy);}
+  .nav-cta{display:flex;align-items:center;gap:14px;}
+  .nav-toggle{
+    display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;
+  }
+  .nav-toggle span{width:22px;height:2px;background:var(--navy);border-radius:2px;}
+  .mobile-panel{
+    display:none;
+    flex-direction:column;gap:2px;
+    background:var(--cream);
+    border-bottom:1px solid var(--border);
+  }
+  .mobile-panel a{
+    padding:14px 24px;font-weight:600;text-decoration:none;color:var(--navy);
+    border-top:1px solid var(--border);
+  }
+  .mobile-panel.open{display:flex;}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:64px 0 96px;position:relative;overflow:hidden;}
+  .hero::before{
+    content:"";position:absolute;inset:-20% -10% auto -10%;height:620px;
+    background:radial-gradient(60% 60% at 30% 20%, rgba(37,99,235,0.10), transparent 70%),
+               radial-gradient(50% 50% at 80% 10%, rgba(251,191,36,0.14), transparent 70%);
+    z-index:-1;
+  }
+  .hero-grid{display:grid;grid-template-columns:1fr;gap:48px;align-items:center;}
+  .hero-copy .eyebrow{margin-bottom:22px;}
+  .hero-copy h1{font-size:clamp(34px,5.6vw,58px);}
+  .hero-copy .lede{font-size:19px;color:var(--slate);margin-top:20px;max-width:56ch;}
+  .hero-copy .sub-lede{font-size:16px;color:var(--slate);margin-top:12px;}
+  .hero-cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px;}
+  .hero-meta{
+    margin-top:28px;display:flex;flex-wrap:wrap;gap:10px 22px;
+    font-size:14px;color:var(--slate);font-weight:600;
+  }
+  .hero-meta span{display:inline-flex;align-items:center;gap:7px;}
+  .dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+  .hero-media{position:relative;}
+  .hero-media img{
+    width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow-soft);
+    border:1px solid var(--border);
+  }
+  .hero-badge{
+    position:absolute;bottom:-22px;left:-16px;
+    background:#fff;border-radius:var(--radius-md);padding:16px 20px;
+    box-shadow:var(--shadow-tiny);border:1px solid var(--border);
+    display:flex;align-items:center;gap:12px;max-width:230px;
+  }
+  .hero-badge .swatch{width:38px;height:38px;border-radius:10px;background:var(--sage);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+  .hero-badge p{font-size:13px;font-weight:700;color:var(--navy);}
+  .hero-badge span{font-size:12px;color:var(--slate);font-weight:500;}
+
+  /* ---------- Meet Zephyr ---------- */
+  .meet{background:var(--blue-light);}
+  .meet-grid{display:grid;grid-template-columns:1fr;gap:44px;align-items:center;}
+  .meet-media{position:relative;}
+  .meet-media img{
+    width:100%;max-width:400px;margin:0 auto;border-radius:var(--radius-lg);
+    box-shadow:var(--shadow-soft);border:1px solid rgba(11,18,32,0.06);
+    aspect-ratio:1/1;object-fit:cover;
+  }
+  .meet-copy .eyebrow{margin-bottom:18px;}
+  .meet-copy h2{font-size:clamp(26px,3.4vw,36px);}
+  .meet-copy p{color:var(--slate);font-size:17px;margin-top:16px;}
+  .meet-list{margin-top:24px;display:flex;flex-direction:column;gap:14px;}
+  .meet-list li{display:flex;gap:12px;font-size:15px;color:var(--navy);font-weight:600;}
+  .check{
+    flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--blue);
+    display:flex;align-items:center;justify-content:center;margin-top:1px;
+  }
+  .check svg{width:12px;height:12px;}
+
+  /* ---------- Problem ---------- */
+  .problem-grid{display:grid;grid-template-columns:1fr;gap:16px;max-width:760px;margin:0 auto;}
+  .problem-item{
+    background:#fff;border:1px solid var(--border);border-radius:var(--radius-md);
+    padding:20px 24px;font-size:16px;font-weight:600;color:var(--navy);
+    display:flex;gap:14px;align-items:flex-start;
+  }
+  .problem-item .q{color:var(--blue);font-weight:800;flex-shrink:0;}
+  .problem-note{
+    max-width:640px;margin:36px auto 0;text-align:center;color:var(--slate);font-size:16px;
+  }
+  .problem-note strong{color:var(--navy);}
+
+  /* ---------- What you build ---------- */
+  .build{background:var(--blue-light);}
+  .build-grid{display:grid;grid-template-columns:1fr;gap:44px;align-items:center;}
+  .build-media img{
+    width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow-soft);
+    border:1px solid rgba(11,18,32,0.06);
+  }
+  .build-list{margin-top:26px;display:flex;flex-direction:column;gap:16px;}
+  .build-list li{
+    display:flex;gap:14px;align-items:flex-start;background:#fff;
+    border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 18px;
+    font-size:15px;font-weight:600;color:var(--navy);
+  }
+
+  /* ---------- How Zephyr helps ---------- */
+  .helps-grid{display:grid;grid-template-columns:1fr;gap:20px;}
+  .helps-card{
+    background:#fff;border:1px solid var(--border);border-radius:var(--radius-md);
+    padding:26px 24px;box-shadow:var(--shadow-tiny);
+  }
+  .helps-card .num{
+    font-size:13px;font-weight:800;color:var(--blue-deep);background:var(--blue-light);
+    display:inline-block;padding:5px 11px;border-radius:999px;margin-bottom:14px;
+  }
+  .helps-card h3{font-size:18px;margin-bottom:8px;}
+  .helps-card p{color:var(--slate);font-size:15px;}
+
+  /* ---------- Curriculum ---------- */
+  .curriculum{background:var(--navy);color:var(--cream);}
+  .curriculum .section-head p{color:rgba(255,253,247,0.7);}
+  .curriculum .eyebrow.on-dark{background:rgba(251,191,36,0.16);color:var(--gold);}
+  .week-grid{display:grid;grid-template-columns:1fr;gap:18px;}
+  .week-card{
+    background:rgba(255,253,247,0.05);border:1px solid rgba(255,253,247,0.12);
+    border-radius:var(--radius-md);padding:26px 24px;position:relative;overflow:hidden;
+  }
+  .week-card::before{
+    content:"";position:absolute;top:0;left:0;width:4px;height:100%;background:var(--gold);
+  }
+  .week-tag{font-size:13px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;color:var(--gold);}
+  .week-card h3{font-size:19px;margin-top:8px;color:#fff;}
+  .week-card p{margin-top:8px;font-size:15px;color:rgba(255,253,247,0.72);}
+
+  /* ---------- Good fit ---------- */
+  .fit-grid{display:grid;grid-template-columns:1fr;gap:20px;max-width:920px;margin:0 auto;}
+  .fit-card{border-radius:var(--radius-lg);padding:30px 28px;}
+  .fit-card.yes{background:rgba(167,199,160,0.18);border:1px solid rgba(167,199,160,0.5);}
+  .fit-card.no{background:#fff;border:1px solid var(--border);}
+  .fit-card h3{font-size:19px;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+  .fit-icon{
+    width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .fit-icon.yes{background:#4C8C3F;}
+  .fit-icon.no{background:var(--slate-light);}
+  .fit-icon svg{width:14px;height:14px;}
+  .fit-card ul{display:flex;flex-direction:column;gap:12px;}
+  .fit-card li{font-size:15px;color:var(--navy);font-weight:500;padding-left:0;}
+
+  /* ---------- Pricing ---------- */
+  .pricing{background:var(--blue-light);}
+  .price-card{
+    max-width:520px;margin:0 auto;background:#fff;border-radius:var(--radius-lg);
+    box-shadow:var(--shadow-soft);border:1px solid var(--border);
+    padding:40px 36px;text-align:center;position:relative;
+  }
+  .price-ribbon{
+    position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+    background:var(--gold);color:#5A3B00;font-weight:800;font-size:13px;
+    padding:7px 18px;border-radius:999px;white-space:nowrap;box-shadow:var(--shadow-tiny);
+  }
+  .price-card h3{font-size:22px;margin-top:14px;}
+  .price-amount{margin-top:18px;display:flex;align-items:baseline;justify-content:center;gap:8px;}
+  .price-amount .amt{font-size:56px;font-weight:800;color:var(--navy);}
+  .price-amount .per{font-size:15px;color:var(--slate);font-weight:600;}
+  .price-sub{margin-top:6px;color:var(--slate);font-size:14px;}
+  .price-detail-list{margin-top:26px;display:flex;flex-direction:column;gap:12px;text-align:left;}
+  .price-detail-list li{display:flex;gap:12px;font-size:15px;font-weight:600;color:var(--navy);}
+  .price-card .btn{margin-top:30px;}
+  .price-foot{margin-top:16px;font-size:13px;color:var(--slate-light);}
+  .price-seats{
+    margin-top:22px;display:flex;align-items:center;justify-content:center;gap:10px;
+    font-size:13px;font-weight:700;color:#92650B;background:rgba(251,191,36,0.16);
+    padding:9px 16px;border-radius:999px;
+  }
+
+  /* ---------- Interest ---------- */
+  .interest{background:var(--navy);color:var(--cream);}
+  .interest-card{
+    max-width:680px;margin:0 auto;text-align:center;
+    background:rgba(255,253,247,0.05);border:1px solid rgba(255,253,247,0.14);
+    border-radius:var(--radius-lg);padding:48px 36px;
+  }
+  .interest-card .eyebrow{background:rgba(251,191,36,0.16);color:var(--gold);margin-bottom:18px;}
+  .interest-card h2{font-size:clamp(24px,3vw,32px);color:#fff;}
+  .interest-card p{margin-top:14px;color:rgba(255,253,247,0.72);font-size:16px;max-width:52ch;margin-left:auto;margin-right:auto;}
+  .interest-status{
+    margin-top:22px;display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;font-weight:700;color:var(--gold);
+    background:rgba(251,191,36,0.1);padding:8px 16px;border-radius:999px;
+  }
+  .pulse{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 1.8s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+  .interest-card .btn{margin-top:28px;}
+  .btn-disabled{
+    background:rgba(255,253,247,0.12);color:rgba(255,253,247,0.55);cursor:not-allowed;
+    box-shadow:none;
+  }
+  .btn-disabled:hover{transform:none;background:rgba(255,253,247,0.12);}
+
+  /* ---------- FAQ ---------- */
+  .faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:12px;}
+  .faq-item{
+    background:#fff;border:1px solid var(--border);border-radius:var(--radius-md);
+    overflow:hidden;
+  }
+  .faq-item summary{
+    list-style:none;cursor:pointer;padding:20px 24px;font-weight:700;font-size:16px;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+  }
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-plus{
+    width:24px;height:24px;border-radius:50%;background:var(--blue-light);color:var(--blue-deep);
+    flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;
+    transition:transform .2s ease;
+  }
+  .faq-item[open] .faq-plus{transform:rotate(45deg);}
+  .faq-body{padding:0 24px 22px;color:var(--slate);font-size:15px;max-width:64ch;}
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{
+    background:linear-gradient(135deg, var(--blue) 0%, #3B7BF0 55%, var(--sage) 130%);
+    color:#fff;text-align:center;position:relative;overflow:hidden;
+  }
+  .final-cta::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(50% 60% at 80% 0%, rgba(251,191,36,0.35), transparent 70%);
+  }
+  .final-cta .wrap{position:relative;z-index:1;}
+  .final-cta h2{font-size:clamp(28px,4vw,42px);max-width:680px;margin:0 auto;}
+  .final-cta p{margin-top:16px;font-size:17px;color:rgba(255,255,255,0.9);}
+  .final-meta{margin-top:6px;font-weight:700;}
+  .final-cta .hero-cta-row{justify-content:center;margin-top:30px;}
+  .final-cta .btn-secondary{border-color:rgba(255,255,255,0.5);color:#fff;}
+  .final-cta .btn-secondary:hover{border-color:#fff;background:rgba(255,255,255,0.08);}
+  .final-note{margin-top:22px;font-size:14px;color:rgba(255,255,255,0.8);}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--navy);color:rgba(255,253,247,0.6);padding:40px 0;}
+  .foot-grid{display:flex;flex-direction:column;gap:18px;align-items:center;text-align:center;}
+  .foot-brand{display:flex;align-items:center;gap:10px;color:#fff;font-weight:800;font-size:16px;}
+  .foot-links{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;font-size:14px;}
+  .foot-links a{text-decoration:none;color:rgba(255,253,247,0.6);}
+  .foot-links a:hover{color:#fff;}
+  .foot-fine{font-size:13px;color:rgba(255,253,247,0.4);}
+
+  /* ---------- Reveal ---------- */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ---------- Responsive ---------- */
+  @media (min-width:640px){
+    .problem-grid{grid-template-columns:1fr 1fr;}
+    .build-list{grid-template-columns:1fr 1fr;display:grid;}
+    .fit-grid{grid-template-columns:1fr 1fr;}
+    .helps-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (min-width:860px){
+    section{padding:112px 0;}
+    .hero{padding:88px 0 130px;}
+    .hero-grid{grid-template-columns:1.05fr 0.95fr;gap:64px;}
+    .meet-grid{grid-template-columns:0.85fr 1.15fr;gap:64px;}
+    .meet-media img{margin:0;}
+    .build-grid{grid-template-columns:1fr 1fr;gap:64px;}
+    .week-grid{grid-template-columns:repeat(4,1fr);}
+    .helps-grid{grid-template-columns:repeat(4,1fr);}
+    .nav-links{display:flex;}
+    .nav-toggle{display:none;}
+  }
+  @media (max-width:859px){
+    .nav-links{display:none;}
+    .nav-toggle{display:flex;}
+  }
+  @media (min-width:1000px){
+    .problem-grid{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="wrap">
+    <a href="#top" class="brand">
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 15c3-6 6-9 8-9s3 5 8 3M4 15c3 2 6 3 8 1s3-5 8-3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      Zephyr Collective
+    </a>
+    <nav class="nav-links">
+      <a href="#meet">Meet Zephyr</a>
+      <a href="#curriculum">Curriculum</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-primary btn-sm" href="https://breezeflare715.gumroad.com/l/fbncmf" target="_blank" rel="noopener">Join — $197</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-panel" id="mobilePanel">
+    <a href="#meet">Meet Zephyr</a>
+    <a href="#curriculum">Curriculum</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Founding cohort · Starts July 23, 2026</span>
+        <h1>Build confidence with AI — with Zephyr as your guide.</h1>
+        <p class="lede">A 4-week live beginner program that helps you understand, apply, and benefit from AI through guided practice, practical workflows, and simple systems you can actually use.</p>
+        <p class="sub-lede">No technical background required. No hype. No overwhelm.</p>
+        <div class="hero-cta-row">
+          <a class="btn btn-primary" href="https://breezeflare715.gumroad.com/l/fbncmf" target="_blank" rel="noopener">Join the Founding Cohort — $197</a>
+          <a class="btn btn-secondary" href="#meet">Meet Zephyr</a>
+        </div>
+        <div class="hero-meta">
+          <span><span class="dot"></span>4 weeks</span>
+          <span><span class="dot"></span>Wednesdays 9am PT</span>
+          <span><span class="dot"></span>Zoom + Discord</span>
+          <span><span class="dot"></span>10 seats only</span>
+        </div>
+      </div>
+      <div class="hero-media reveal">
+        <img src="../assets/zephyr-hero.jpg" alt="Abstract illustration of an AI mentor guiding a beginner from confusion to clarity along a calm, glowing path." width="1200" height="675">
+        <div class="hero-badge">
+          <span class="swatch">
+            <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M12 3v18M3 12h18" stroke="#0B1220" stroke-width="2" stroke-linecap="round"/></svg>
+          </span>
+          <div>
+            <p>From confusion to clarity</p>
+            <span>Guided, step by step</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MEET ZEPHYR ============ -->
+  <section class="meet" id="meet">
+    <div class="wrap meet-grid">
+      <div class="meet-media reveal">
+        <img src="../assets/zephyr-mentor.jpg" alt="Soft, glowing abstract representation of Zephyr, the AI mentor and coach." width="1000" height="1000">
+      </div>
+      <div class="meet-copy">
+        <span class="eyebrow">Meet Zephyr</span>
+        <h2>Your AI mentor and coach — not a tool you have to figure out alone.</h2>
+        <p>Zephyr is the guide at the center of this program. Not a person, not a persona to manage — an AI mentor and coach that helps you understand AI in plain English and practice using it as a real thinking partner.</p>
+        <ul class="meet-list">
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Explains AI in plain English, never jargon</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Helps you ask better questions</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Turns scattered ideas into clear plans</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Builds your confidence through guided practice, live</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROBLEM ============ -->
+  <section class="problem">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">The problem</span>
+        <h2>AI is powerful — but most people still feel lost.</h2>
+        <p>You keep hearing AI can help you write, plan, research, organize, and decide better. But when you sit down to use it, the questions pile up.</p>
+      </div>
+      <div class="problem-grid">
+        <div class="problem-item"><span class="q">?</span>What should I actually use AI for?</div>
+        <div class="problem-item"><span class="q">?</span>Which tool should I even start with?</div>
+        <div class="problem-item"><span class="q">?</span>Why do the answers feel so generic?</div>
+        <div class="problem-item"><span class="q">?</span>How do I know the output is trustworthy?</div>
+      </div>
+      <p class="problem-note">Most AI content makes this worse — throwing more tools, prompts, and jargon at you. <strong>Zephyr Collective exists to make AI feel simple, practical, and usable.</strong></p>
+    </div>
+  </section>
+
+  <!-- ============ WHAT YOU BUILD ============ -->
+  <section class="build" id="build">
+    <div class="wrap build-grid">
+      <div class="build-copy">
+        <span class="eyebrow">What you'll build</span>
+        <h2>Leave with practical AI confidence — not just notes.</h2>
+        <p style="color:var(--slate);font-size:17px;margin-top:14px;">By the end of 4 weeks, you'll have real, reusable systems — not just a folder of tips you'll forget.</p>
+        <ul class="build-list">
+          <li>A personal AI mentor prompt you can reuse anywhere</li>
+          <li>A prompt library you actually understand</li>
+          <li>Workflows for writing, planning, research &amp; decisions</li>
+          <li>A weekly AI practice rhythm that sticks</li>
+          <li>One completed AI-assisted project or workflow</li>
+          <li>Confidence working with Zephyr as your ongoing AI coach</li>
+        </ul>
+      </div>
+      <div class="build-media reveal">
+        <img src="../assets/zephyr-workflow.jpg" alt="Clean workflow diagram showing an AI learning system: ask, practice, build, use weekly." width="1200" height="675">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW ZEPHYR HELPS ============ -->
+  <section class="helps">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">How Zephyr helps</span>
+        <h2>Learn AI by working with an AI mentor.</h2>
+        <p>You won't just learn about AI in the abstract — you'll practice using it as a thinking, planning, and writing partner, live, every week.</p>
+      </div>
+      <div class="helps-grid">
+        <div class="helps-card reveal">
+          <span class="num">01</span>
+          <h3>Plain-English foundations</h3>
+          <p>Understand what AI actually is and isn't, without the jargon or hype.</p>
+        </div>
+        <div class="helps-card reveal">
+          <span class="num">02</span>
+          <h3>Guided live practice</h3>
+          <p>Work alongside Zephyr and the group each week — not solo videos you never finish.</p>
+        </div>
+        <div class="helps-card reveal">
+          <span class="num">03</span>
+          <h3>Real workflows</h3>
+          <p>Build repeatable systems for writing, planning, research, and everyday decisions.</p>
+        </div>
+        <div class="helps-card reveal">
+          <span class="num">04</span>
+          <h3>Confidence, not overnight expertise</h3>
+          <p>The goal isn't to make you an AI expert — it's to help you use AI confidently in real life.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CURRICULUM ============ -->
+  <section class="curriculum" id="curriculum">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow on-dark">4-week curriculum</span>
+        <h2>One clear path, one week at a time.</h2>
+        <p>Every week builds on the last — no jumping around, no overwhelm.</p>
+      </div>
+      <div class="week-grid">
+        <div class="week-card reveal">
+          <span class="week-tag">Week 1</span>
+          <h3>Meet Your AI Mentor</h3>
+          <p>Learn how to work with Zephyr, understand AI basics in plain English, and build your first personal AI mentor prompt.</p>
+        </div>
+        <div class="week-card reveal">
+          <span class="week-tag">Week 2</span>
+          <h3>Build Your AI Workflows</h3>
+          <p>Create repeatable workflows for writing, planning, brainstorming, research, and daily productivity.</p>
+        </div>
+        <div class="week-card reveal">
+          <span class="week-tag">Week 3</span>
+          <h3>Apply AI to Real Work</h3>
+          <p>Use AI to organize projects, refine ideas, create content, make decisions, and reduce busywork.</p>
+        </div>
+        <div class="week-card reveal">
+          <span class="week-tag">Week 4</span>
+          <h3>Your AI Confidence System</h3>
+          <p>Combine everything into a simple AI system you can keep using long after the cohort ends.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GOOD FIT / NOT A FIT ============ -->
+  <section class="fit">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Is this for you?</span>
+        <h2>Good fit / not a fit</h2>
+        <p>AI Foundations is built for beginners who are ready to practice — it's not for everyone, and that's okay.</p>
+      </div>
+      <div class="fit-grid">
+        <div class="fit-card yes reveal">
+          <h3><span class="fit-icon yes"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Good fit if you're...</h3>
+          <ul>
+            <li>A professional who wants to use AI at work</li>
+            <li>A creator turning ideas into content</li>
+            <li>A coach or consultant who wants clearer workflows</li>
+            <li>An educator who wants AI support for lessons &amp; planning</li>
+            <li>A small business owner who needs a practical AI thought partner</li>
+            <li>An overwhelmed beginner who wants calm, step-by-step guidance</li>
+          </ul>
+        </div>
+        <div class="fit-card no reveal">
+          <h3><span class="fit-icon no"><svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Not a fit if you...</h3>
+          <ul>
+            <li>Want AI to do your thinking for you, with zero effort</li>
+            <li>Are looking for a get-rich-quick or "hack" scheme</li>
+            <li>Already build advanced AI systems or write production code</li>
+            <li>Can't commit to 4 live Wednesday sessions</li>
+            <li>Want fully custom 1:1 consulting, not a cohort</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRICING ============ -->
+  <section class="pricing" id="pricing">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow gold">Founding cohort pricing</span>
+        <h2>The lowest this program will ever be priced.</h2>
+        <p>This is the first version of the Zephyr-guided program. Founding students get the lowest price, a small group, and more direct support.</p>
+      </div>
+      <div class="price-card reveal">
+        <span class="price-ribbon">10 founding seats only</span>
+        <h3>AI Foundations: Build Confidence With AI</h3>
+        <div class="price-amount"><span class="amt">$197</span><span class="per">founding price</span></div>
+        <p class="price-sub">4 weeks · Wednesdays 9am PT · Zoom + Discord</p>
+        <ul class="price-detail-list">
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>4 live weekly Zoom sessions with Zephyr</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Private Discord community</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Zephyr-guided exercises, prompts &amp; templates</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Live Q&amp;A and coaching every week</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Founding-student input as the program evolves</li>
+        </ul>
+        <a class="btn btn-primary btn-block" href="https://breezeflare715.gumroad.com/l/fbncmf" target="_blank" rel="noopener">Join the Founding Cohort — $197</a>
+        <p class="price-foot">Future cohorts will be priced higher after this founding group.</p>
+        <div class="price-seats">
+          <span class="pulse" style="animation:none;"></span> Only 10 seats for July 23, 2026
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INTEREST / NOT READY ============ -->
+  <section class="interest" id="interest">
+    <div class="wrap">
+      <div class="interest-card reveal">
+        <span class="eyebrow">Not ready to enroll yet?</span>
+        <h2>Ask Zephyr a question, or join the interest list.</h2>
+        <p>Tell us what feels most confusing about AI right now and what you'd want help with. We'll follow up as soon as the intake form is ready.</p>
+        <span class="interest-status"><span class="pulse"></span> Interest form in progress</span>
+        <div>
+          <a class="btn btn-disabled" href="#interest" aria-disabled="true" title="Form coming soon">Ask Zephyr / Join Interest List</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="faq" id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">FAQ</span>
+        <h2>Questions, answered plainly.</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Is Zephyr a real person?<span class="faq-plus">+</span></summary>
+          <div class="faq-body">No. Zephyr is the AI mentor and coach experience inside the program. Students learn how to work with AI like a thinking partner, planner, and practical guide.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Do I need to be technical?<span class="faq-plus">+</span></summary>
+          <div class="faq-body">No. This is built for beginners — you just need curiosity and a willingness to practice.</div>
+        </details>
+        <details class="faq-item">
+          <summary>What tools do I need?<span class="faq-plus">+</span></summary>
+          <div class="faq-body">A computer, internet access, Zoom, Discord, and access to at least one AI chatbot.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Is this only for business owners?<span class="faq-plus">+</span></summary>
+          <div class="faq-body">No. You can use Zephyr-style workflows for work, learning, productivity, content, business, or personal projects.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Will Zephyr do everything for me?<span class="faq-plus">+</span></summary>
+          <div class="faq-body">No. Zephyr helps you think, plan, create, and execute. The goal isn't to replace your judgment — it's to help you become more capable with AI.</div>
+        </details>
+        <details class="faq-item">
+          <summary>What if I miss a session?<span class="faq-plus">+</span></summary>
+          <div class="faq-body">Sessions should be recorded and shared with enrolled students if recording is enabled.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="final-cta">
+    <div class="wrap">
+      <h2>Ready to build confidence with AI?</h2>
+      <p>Meet Zephyr, your AI mentor and coach, and learn to use AI in a simple, practical, beginner-friendly way.</p>
+      <p class="final-meta">10 seats · $197 founding price · Starts July 23, 2026</p>
+      <div class="hero-cta-row">
+        <a class="btn btn-primary" href="https://breezeflare715.gumroad.com/l/fbncmf" target="_blank" rel="noopener" style="background:#fff;color:var(--blue-deep);box-shadow:0 12px 28px -10px rgba(11,18,32,0.35);">Join the Founding Cohort — $197</a>
+        <a class="btn btn-secondary" href="#interest">Ask Zephyr a Question</a>
+      </div>
+      <p class="final-note">Questions? Use the interest list above and we'll help you decide if it's a fit.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <span class="brand-mark" style="width:28px;height:28px;">
+        <svg viewBox="0 0 24 24" fill="none" width="14" height="14"><path d="M4 15c3-6 6-9 8-9s3 5 8 3M4 15c3 2 6 3 8 1s3-5 8-3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      Zephyr Collective
+    </div>
+    <nav class="foot-links">
+      <a href="#meet">Meet Zephyr</a>
+      <a href="#curriculum">Curriculum</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#interest">Contact</a>
+    </nav>
+    <p class="foot-fine">© 2026 Zephyr Collective. AI Foundations: Build Confidence With AI.</p>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  var toggle = document.getElementById('navToggle');
+  var panel = document.getElementById('mobilePanel');
+  toggle.addEventListener('click', function(){
+    panel.classList.toggle('open');
+  });
+  panel.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ panel.classList.remove('open'); });
+  });
+
+  // Scroll reveal
+  var revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  }
+</script>
+
+</body>
+</html>
